@@ -4,19 +4,21 @@
 #include <cv_bridge/cv_bridge.h>
 
 
-// cv::Mat image;
+cv::Mat image;
 
 void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
   ROS_INFO_STREAM("Get Msg");
   try
   {
-    cv::imshow("view", cv_bridge::toCvShare(msg, "bgr8") -> image);
+    image = cv_bridge::toCvShare(msg, "bgr8") -> image;
+    cv::imshow("view", image);
   }
   catch (cv_bridge::Exception& e)
   {
     ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
 }
+  cv::waitKey(1);
 }
 
 int main(int argc, char **argv)
@@ -26,7 +28,7 @@ int main(int argc, char **argv)
   cv::namedWindow("view");
   cv::startWindowThread();
   image_transport::ImageTransport it(nh);
-  image_transport::Subscriber sub = it.subscribe("/rgb_camera/image_raw", 1, imageCallback);
+  image_transport::Subscriber sub = it.subscribe("/camera/color/image_raw", 1, imageCallback);
   ros::spin();
   cv::destroyWindow("view");
 }

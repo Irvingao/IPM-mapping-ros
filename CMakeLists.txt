@@ -37,11 +37,11 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
 )
 
-add_executable(image_sub  src/image_sub.cpp)
-target_link_libraries(image_sub  ${catkin_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES})
+# add_executable(image_sub  src/image_sub.cpp)
+# target_link_libraries(image_sub  ${catkin_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES})
 
-# add_executable(image2point src/image2point.cpp)
-# target_link_libraries(image2point ${OpenCV_LIBS} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES} ${PCL_LIBRARIES})
+add_executable(image2point src/image2point.cpp)
+target_link_libraries(image2point ${OpenCV_LIBS} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES} ${PCL_LIBRARIES})
 
 # add_executable(pcl_view src/pcl_view.cpp)
 # target_link_libraries(pcl_view ${catkin_LIBRARIES} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES} ${PCL_LIBRARIES})
